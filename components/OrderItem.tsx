@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactElement, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -8,6 +8,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from "@material-ui/core/Grid";
 import Typography from '@material-ui/core/Typography';
 import Button from "@material-ui/core/Button";
+import {createOrder} from "../src/services/services";
+import {Dialog, DialogTitle, List, ListItem, TextField} from "@material-ui/core";
+import {SimpleDialogProps} from "./ApartmentItem";
 
 
 const useStyles = makeStyles({
@@ -32,6 +35,7 @@ export interface IOrderItem {
 export default function OrderItem(props: IOrderItem) {
     const classes = useStyles();
     const {_id, name, type, userFirstName, userLastName, email, quantity} = props;
+
     return (
         <Grid item xs={11} xl={6} sm={12} md={6}>
             <Card className={classes.root} id={_id}>

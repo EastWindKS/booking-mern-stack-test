@@ -4,7 +4,8 @@ import {createApolloFetch} from "apollo-fetch";
 import {IVoucher} from "../models/voucher";
 import {IOrder} from "../models/order";
 
-const uri = "http://localhost:3000/api/graphql";
+//const uri = "http://localhost:3000/api/graphql";
+const uri = "https://booking-mern-stack-test.herokuapp.com/api/graphql";
 export const checkSellerAccount = (login: string, password: string): Promise<boolean> => {
     const query = `
   query {
@@ -14,11 +15,10 @@ export const checkSellerAccount = (login: string, password: string): Promise<boo
     const apolloFetch = createApolloFetch({uri});
     return apolloFetch({query}).then(r => r.data.getSeller).catch(e => console.log(e));
 };
-export const createOrder = (name: string, type: string, userFirstName: string, userLastName: string, quantity: string, email: string): Promise<IOrder> => {
+export const createOrder = (name: string, type: string, userFirstName: string, userLastName: string, quantity: string = "0", email: string, dateFrom: string, dateTo: string): Promise<IOrder> => {
     const query = `
   mutation {
-  createSeller(name:"${name}",type:"${type}",userFirstName:"${userFirstName}","userLastName":"${userLastName}",quantity:"${quantity}",email:"${email}"){_id,type,name}}
-`;
+  createOrder(name:"${name}",type:"${type}",userFirstName:"${userFirstName}",userLastName:"${userLastName}",quantity:"${quantity}",email:"${email}}",dateFrom:"${dateFrom}", dateTo:"${dateTo}"){_id,type,name}}`;
     const apolloFetch = createApolloFetch({uri});
     return apolloFetch({query}).then(r => r.data.createSeller).catch(e => console.log(e));
 };
@@ -87,7 +87,7 @@ export const getAllOrders = (): Promise<IOrder[]> => {
     const apolloFetch = createApolloFetch({uri});
     return apolloFetch({query}).then(r => r.data.getAllOrders).catch(e => console.log(e));
 };
-export const deleteVoucher = (_id:any): Promise<boolean> => {
+export const deleteVoucher = (_id: any): Promise<boolean> => {
     const query = `
   mutation {
   deleteVoucher(_id:"${_id}")
@@ -96,7 +96,7 @@ export const deleteVoucher = (_id:any): Promise<boolean> => {
     const apolloFetch = createApolloFetch({uri});
     return apolloFetch({query}).then(r => r.data).catch(e => console.log(e));
 };
-export const deleteApartment = (_id:any): Promise<boolean> => {
+export const deleteApartment = (_id: any): Promise<boolean> => {
     const query = `
   mutation {
   deleteVoucher(_id:"${_id}")

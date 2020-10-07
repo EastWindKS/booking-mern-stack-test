@@ -87,8 +87,8 @@ export default {
     Mutation: {
         createOrder: async (
             parent,
-            {name, userFirstName, userLastName, quantity, type, email}:
-                { name: IOrder["name"]; userFirstName: IOrder["userFirstName"]; userLastName: IOrder["userLastName"]; quantity: IOrder["quantity"]; type: IOrder["type"]; email: IOrder["email"] },
+            {name, userFirstName, userLastName, quantity, type, email, dateFrom,dateTo}:
+                { name: IOrder["name"]; userFirstName: IOrder["userFirstName"]; userLastName: IOrder["userLastName"]; quantity: IOrder["quantity"]; type: IOrder["type"]; email: IOrder["email"]; dateFrom:IOrder["dateFrom"];dateTo:IOrder["dateTo"] },
             {dbConn}: { dbConn: mongo.Connection }
         ): Promise<IOrder> => {
             const Order: mongo.Model<IOrder> = OrderModel(dbConn);
@@ -99,7 +99,9 @@ export default {
                     userLastName,
                     quantity,
                     type,
-                    email
+                    email,
+                    dateFrom,
+                    dateTo
                 });
                 return order;
             } catch (error) {

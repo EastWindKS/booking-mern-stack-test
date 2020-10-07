@@ -8,7 +8,9 @@ export default gql`
         userLastName:String!,
         quantity:String!,
         email:String!,
-        type:String!
+        type:String!,
+        dateFrom:String!,
+        dateTo:String!,
     }
     type Seller {
         _id: ID!
@@ -41,7 +43,7 @@ export default gql`
         getAllOrders:[Order!]
     }
     type Mutation{
-        createOrder(name:String!, userFirstName:String!,userLastName:String!,quantity:String!, email:String!, type:String!):Order
+        createOrder(name:String!, userFirstName:String!,userLastName:String!,quantity:String!, email:String!, type:String!,dateFrom:String!,dateTo:String!):Order
         createSeller(login:String!,password:String!):Seller
         createApartment(name:String!,description:String!,imageUrl:String!,price: String!, roomsNumber:String!): Apartment
         createVoucher(name:String!,description:String!,imageUrl:String!,variant: String!,price:String!, quantity:String!): Voucher

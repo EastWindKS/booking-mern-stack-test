@@ -136,7 +136,7 @@ export function Header({}): React.ReactElement {
                                 Apartments
                             </Button>
                         </Link>
-                        <Link href={"/seller-panel"}>
+                        <Link href={"/seller-sign-in"}>
                             <Button
                                 variant={"contained"}
                                 color={"secondary"}

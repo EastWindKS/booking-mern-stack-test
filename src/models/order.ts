@@ -7,7 +7,8 @@ export interface IOrder extends mongo.Document {
     quantity: string;
     email: string;
     name: string;
-
+    dateFrom: string,
+    dateTo: string
 };
 
 const schema: mongo.SchemaDefinition = {
@@ -32,6 +33,14 @@ const schema: mongo.SchemaDefinition = {
         required: true
     },
     name: {
+        type: mongo.SchemaTypes.String,
+        required: true
+    },
+    dateFrom: {
+        type: mongo.SchemaTypes.String,
+        required: true
+    },
+    dateTo: {
         type: mongo.SchemaTypes.String,
         required: true
     },
