@@ -1,6 +1,6 @@
 import mongo from "mongoose";
 
-const uri: string = process.env.SELLER_DB_URL;
+const uri: string = process.env.DB;
 let conStr: mongo.Connection = null;
 
 export const getConnection= async (): Promise<mongo.Connection> => {
